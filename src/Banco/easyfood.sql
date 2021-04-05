@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Tempo de geração: 14-Mar-2021 às 15:45
+-- Tempo de geração: 05-Abr-2021 às 23:02
 -- Versão do servidor: 8.0.18
 -- versão do PHP: 7.3.12
 
@@ -33,7 +33,15 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `IdCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`IdCategoria`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`IdCategoria`, `Nome`) VALUES
+(3, 'bebidas'),
+(4, 'bebidas');
 
 -- --------------------------------------------------------
 
@@ -49,7 +57,15 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `Cnpj` varchar(14) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `IdEndereco` int(11) NOT NULL,
   PRIMARY KEY (`IdEmpresa`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `empresa`
+--
+
+INSERT INTO `empresa` (`IdEmpresa`, `Nome`, `Telefone`, `Cnpj`, `IdEndereco`) VALUES
+(3, 'MontanhaTech', '38211131', '99999999', 5),
+(4, 'MontanhaTech', '38211131', '99999999', 4);
 
 -- --------------------------------------------------------
 
@@ -68,7 +84,15 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   `Complemento` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `PontoReferencia` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`IdEndereco`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `endereco`
+--
+
+INSERT INTO `endereco` (`IdEndereco`, `Cep`, `Bairro`, `Numero`, `Rua`, `Cidade`, `Complemento`, `PontoReferencia`) VALUES
+(4, '00000000', 'bela Vista', 755, 'antonio caetano de menezes', 'Patos de Minas', '', 'perto dirim supermercado'),
+(5, '00000000', 'bela Vista', 755, 'antonio caetano de menezes', 'Patos de Minas', '', 'perto dirim supermercado');
 
 -- --------------------------------------------------------
 
@@ -82,7 +106,15 @@ CREATE TABLE IF NOT EXISTS `filial` (
   `IdEmpresa` int(11) NOT NULL,
   `IdPessoa` int(11) NOT NULL,
   PRIMARY KEY (`IdFilial`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `filial`
+--
+
+INSERT INTO `filial` (`IdFilial`, `IdEmpresa`, `IdPessoa`) VALUES
+(3, 1, 1),
+(4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -142,11 +174,20 @@ CREATE TABLE IF NOT EXISTS `pedidoc` (
 
 DROP TABLE IF EXISTS `pessoa`;
 CREATE TABLE IF NOT EXISTS `pessoa` (
-  `IdPessoa` int(11) NOT NULL,
+  `IdPessoa` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `cpf` varchar(9) COLLATE latin1_general_ci NOT NULL,
   `Telefone` varchar(10) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `IdEndereco` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `IdEndereco` int(11) NOT NULL,
+  PRIMARY KEY (`IdPessoa`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `pessoa`
+--
+
+INSERT INTO `pessoa` (`IdPessoa`, `Nome`, `cpf`, `Telefone`, `IdEndereco`) VALUES
+(4, 'matheus douglas', '99999999', '999999999', 2);
 
 -- --------------------------------------------------------
 
@@ -156,15 +197,23 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
 
 DROP TABLE IF EXISTS `produto`;
 CREATE TABLE IF NOT EXISTS `produto` (
-  `IdProduto` int(11) NOT NULL,
+  `Idproduto` int(11) NOT NULL AUTO_INCREMENT,
   `Descricao` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Valor` double NOT NULL,
   `Nome` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `IdCategoria` int(11) NOT NULL,
   `LocImagem` varchar(200) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Bloqueado` tinyint(1) NOT NULL DEFAULT '0',
-  `IdFilial` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `IdFilial` int(11) NOT NULL,
+  PRIMARY KEY (`Idproduto`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`Idproduto`, `Descricao`, `Valor`, `Nome`, `IdCategoria`, `LocImagem`, `Bloqueado`, `IdFilial`) VALUES
+(4, 'produto teste 2', 100.5, 'produto teste', 1, 'C:/imagem', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -194,14 +243,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Password` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `IdPessoa` int(11) NOT NULL,
   PRIMARY KEY (`Iduser`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`Iduser`, `Email`, `Password`, `IdPessoa`) VALUES
-(1, 'teste@teste.com', 'matheus1', 1);
+(31, 'danilo@ursaocafetao.com', 'disgraça', 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -32,7 +32,7 @@ router.delete('/deletauser', async(req, res, next)=>{
     const teste = await Banco.connection.promise().execute('delete from user u where u.iduser=? ',[user]);
     res.status(200).json('Registro apagado')
 })
-router.delete('/apagatodos', async(req, res, next)=>{
+router.delete('/apagatodos', async(req, res, next)=>{ /////////////////////////////////////////////////////////////////////////Rotas do desenvolvedor
 
     const rows = await Banco.connection.promise().execute('delete from user');
     res.status(200).json('Registros apagados')

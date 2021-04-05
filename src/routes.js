@@ -26,7 +26,7 @@ routes.use('/pessoa',pessoa)
 routes.use('/pagamento',pagamento)
 routes.use('/frete',frete)
 routes.use('/pedidoi',pedidoi)
-//routes.use('/pedido',pedido)
+routes.use('/pedido',pedido)
 
 
-  module.exports = routes;
+module.exports = routes;

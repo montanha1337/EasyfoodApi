@@ -38,7 +38,7 @@ router.delete('/deletaproduto', async(req, res, next)=>{
     const [rows] = await Banco.connection.promise().execute('delete from produto p where p.idproduto=? ',[produto]);
     res.status(200).json('Registro apagado')
 })
-router.delete('/apagatodos', async(req, res, next)=>{
+router.delete('/apagatodos', async(req, res, next)=>{/////////////////////////////////////////////////Rotas do desenvolvedor
 
     const [rows] = await Banco.connection.promise().execute('delete from produto');
     res.status(200).json('Registros apagados')
