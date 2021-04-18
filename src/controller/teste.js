@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.get('/', (req, res)=> { // Rota de teste para testar a rota.
-    res.json('Acessou!!!')
+    res.json('Backend  Online!!')
 })
 router.get('/conexaobanco',async(req, res)=>{ // rota de teste para testar a conexão do banco via rota.
     const conexao= await Banco.testaconexao()

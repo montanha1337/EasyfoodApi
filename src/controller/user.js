@@ -27,6 +27,23 @@ router.put('/atualizasenha', async(req,res,next)=>{
     const [rows] = await Banco.connection.promise().execute('update user set Password=? where Iduser=?', [password,user]);
     res.status(200).json("alterado com sucesso");
 })
+router.get('/login', async(req,res,next)=>{
+    const {email, password}=req.body;
+    const [rows] = await Banco.connection.promise().execute('select u.Iduser from user u where email=? and Password=?', [email,password]);
+    const user = rows;
+    if(rows.length){
+        const [rows] = await Banco.connection.promise().execute('SELECT f.IdFilial from user u inner join filial f on u.IdPessoa= f.IdPessoa where u.Email=? and u.Password=?',[email,password]);
+        if(rows.length){
+        res.status(200).json({login:user,rows});
+    }else{
+        res.json({login:user});
+    }
+}else{
+    res.status(406).json({erro:"Nao encontrado"});
+    }
+
+})
+
 router.delete('/deletauser', async(req, res, next)=>{
     const {user} = req.body
     const teste = await Banco.connection.promise().execute('delete from user u where u.iduser=? ',[user]);

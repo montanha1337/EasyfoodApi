@@ -4,9 +4,9 @@ import Banco from '../Banco/conexao'
 const router = express.Router()
 
 router.post('/cadastro', async(req, res, next)=> {
-   const {nome,cpf,telefone,endereco} = req.body
-    const [rows] = await Banco.connection.promise().query('INSERT INTO `pessoa`( `Nome`, `cpf`, `Telefone`, `IdEndereco`) VALUES (?,?,?,?)',
-    [nome,cpf,telefone,endereco]);
+   const {nome,cpf,telefone} = req.body
+    const [rows] = await Banco.connection.promise().query('INSERT INTO `pessoa`( `Nome`, `cpf`, `Telefone`) VALUES (?,?,?)',
+    [nome,cpf,telefone]);
     const texto = 'id:'+rows.insertId
     res.status(201).json([texto])
     next();//usado para ficar em standby

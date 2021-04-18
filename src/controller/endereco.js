@@ -4,11 +4,10 @@ import Banco from '../Banco/conexao'
 const router = express.Router()
 
 router.post('/cadastro', async(req, res, next)=> {
-   const {cep,bairro,numero,rua,cidade,complemento,referencia} = req.body
+   const {cep,bairro,numero,rua,cidade,complemento,referencia,user} = req.body
     const [rows] = await Banco.connection.promise().query('INSERT INTO `endereco`(`Cep`, `Bairro`, `Numero`, `Rua`, `Cidade`, `Complemento`, `PontoReferencia`) VALUES (?,?,?,?,?,?,?)',
-    [cep,bairro,numero,rua,cidade,complemento,referencia]);
-    const texto = 'id:'+rows.insertId
-    res.status(201).json([texto])
+    [cep,bairro,numero,rua,cidade,complemento,referencia]);yarn
+    res.status(201).json({Id: rows.insertId})
     next();//usado para ficar em standby
 })
 router.get('/buscartodos', async(req, res, next)=>{

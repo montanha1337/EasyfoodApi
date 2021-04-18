@@ -6,13 +6,13 @@ const connection = mysql.createConnection({
   user: 'root',
   password: '',
   database: 'easyfood',
-  port: '3306',
+  port: '3308',
   namedPlaceholders: true
 });
 //Funçao para testar a conexão
 async function testaconexao() {
   const teste = await connection.connect();
-  return 'Conexão realizada';
+  return 'Banco conectado!';
 }
 
 
